@@ -7,12 +7,14 @@
 
 		<style> 
 			#block {
-			width: 700px;
+			width: 425px;
   			height: 70px;
   			border: 5px solid black; 
   			display: flex;
   			align-items: center;
   			padding: 15px;
+			margin-left:auto; 
+			margin-right:auto;
 			}
 			#block div {
    			flex: 1;
@@ -55,43 +57,55 @@
 		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         
 		<div id="block">
-		<h2 id="1">個資已受到保護，你要解鎖嗎?</h2>
-  		<div style="background-color:coral;"><a href="#10">要</a></div>
-  		<div style="background-color:lightgreen;"><a href="#10">不要</a></div>
+			<h2 id="1">個資已受到保護，你要解鎖嗎?</h2>
+			<input class='prompt1' type="button" value="  要  " style="background-color:lightgreen;">
+    		<p class='show'></p>
+    		<script>
+				var button = document.querySelector('.prompt1');
+				var showtxt = document.querySelector('.show');
+		
+				function popup2(e) {
+            		window.confirm('很抱歉，您輸入的卡號有誤');
+        		};
+				function popup1(e) {
+					var pw = window.prompt('請輸入您的信用卡卡號');
+					if (pw == "8746") {
+						window.location.href='#2';
+					} else {
+						popup2()
+					}
+		
+				}
+				button.addEventListener('click', popup1);
+			</script>
+			<a href="#3"><input class='popuptest' type="button" value="不要" style="background-color:coral;"></a>
+			<input class='prompt2' type="button" value="幫我按讚來獲得解鎖" style="background-color:rgb(238, 236, 144);">
+    		<p class='show'></p>
+    		<script>
+				var button = document.querySelector('.prompt2');
+				var showtxt = document.querySelector('.show');
+				function popup1(e) {
+					window.location.href='#2';
+					window.location.href='https://github.com/yesaouo';
+				}
+				button.addEventListener('click', popup1);
+			</script>
 		</div>
-		<a id="10"href="https://github.com/yesaouo">Go To Donate</a>
-		<h5>or</h5>
-		<a href="#2">已經付費</a>
+
 		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-		<h1 id="2">感謝贊助!!!!!</h1>
-		<h2>大家好我是李宇捷，是個基隆人，目前就讀於國立台灣海洋大學，興趣是打遊戲。</h2>
+
+		<h1 id="2">感謝支持!!!!!</h1>
+		<h2>大家好我是夜颯，是個歐洲人，目前就讀於國立台灣海洋大學，興趣是打遊戲。</h2>
 		<h3>我的書籤:</h3>
 		<a href="https://hololive.jetri.co/#/">HoloTools</a>
 		<a href="http://myself-bbs.com/portal.php">Myself</a>
 		<a href="https://moyuyu.blogspot.com/?m=0">摸魚專區</a>
 		<a href="https://www.youtube.com/c/%E7%85%8C%E9%9D%88/videos">煌靈</a>
 		<a href="https://www.youtube.com/channel/UCbP1p_RvVgA1KBwdUCaNOvQ/videos">慈父</a>
-		<table>
-			<tr>
-				<th>ID</th>
-				<th>Name</th>
-				<th>Email</th>
-			</tr>
-			<tr>
-				<td>01057108</td>
-				<td>李宇捷</td>
-				<td>01057108@mail.ntou.edu.tw</td>
-			</tr>
-		</table>
-		<a href="https://spaces.w3schools.com/space/yesametaverse">網頁維修</a>
-		<a href="#3">回到頂層</a>
-        <form>
-			<input type="text">
-		</form>
-		<form>
-			<input type="file">
-		</form>
+		<a href="https://github.com/yesaouo/TGDY">網頁維修</a>
+		<br>
+		<div style="text-align:center"><a href="#3">回到頂層</a></div>
 
 		<!-- Load external JavaScript -->
         <script src="scripts.js"></script>
