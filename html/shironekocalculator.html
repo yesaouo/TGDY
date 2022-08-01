@@ -58,7 +58,9 @@
         let ND=2*atk*(1+(ap+ndp+sv4+sv10)/100)*asd;
         let SD=atk*(1+(sv4+sdp+sv10)/100)*asd;
         alert("一般傷害:"+Math.round(ND)+"\n技能傷害:"+Math.round(SD));
-        form.record.value+="一般傷害:"+Math.round(ND)+"\n技能傷害:"+Math.round(SD)+"\n\n";
+        const interval='-';
+        form.record.value+="\n一般傷害:"+Math.round(ND)+"\n技能傷害:"+Math.round(SD)+"\n";
+        form.record.scrollTop = form.record.scrollHeight;
     }
 </script>
 
@@ -126,7 +128,7 @@
     <input name="submit" value="取得結果" type="button" onclick="calculator();">
     <br><br><font color="#d94dff"><b>歷史紀錄:</b></font><br>
     <textarea name="record"
-        rows="6"
+        rows="7"
         cols="40"
         readonly></textarea>
 </form>
