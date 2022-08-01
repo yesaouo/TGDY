@@ -17,6 +17,7 @@
   		padding: 25px;
 		margin-left:auto; 
 		margin-right:auto;
+        background:#FFF2CC;
 	}
 </style>
 
@@ -26,21 +27,20 @@
         const skill1=form.skill1.value;
         const skill2=form.skill2.value;
         const skill3=form.skill3.value;
-        const ap=(skill1==1)?15:0+(skill2==1)?20:0+(skill3==1)?25:0
-        +(skill1==7)?20:0+(skill1==8)?25:0+(skill1==9)?24:0
-        +(skill2==6)?25:0+(skill2==7)?27:0+(skill3==9)?30:0
-        +form.ap.value;
-        const cp=(skill1==2)?10:0+(skill2==2)?15:0+(skill3==2)?20:0
-        +form.cp.value;
-        const cdp=(skill3==6)?25:0
-        +form.cdp.value;
-        const ndp=(skill1==3)?25:0+(skill2==3)?35:0+(skill3==3)?50:0
-        +form.ndp.value;
-        const sv4=(skill1==4)?100:0+(skill2==4)?100:0+(skill3==4)?200:0;
-        const sdp=(skill3==5)?40:0
-        +(skill1==5)?15:0+(skill1==6)?20:0+(skill2==5)?30:0+(skill3==7)?30:0+(skill3==8)?50:0
-        +form.sdp.value;
-        const sv10=(skill3==10)?75:0;
+        let ap=new Number(form.ap.value);
+        ap+=((skill1==1)?15:0)+((skill2==1)?20:0)+((skill3==1)?25:0)
+        +((skill1==7)?20:0)+((skill1==8)?25:0)+((skill1==9)?24:0)
+        +((skill2==6)?25:0)+((skill2==7)?27:0)+((skill3==9)?30:0);
+        let cp=new Number(form.cp.value);
+        cp+=((skill1==2)?10:0)+((skill2==2)?15:0)+((skill3==2)?20:0);
+        let cdp=new Number(form.cdp.value);
+        cdp+=((skill3==6)?25:0);
+        let ndp=new Number(form.ndp.value);
+        ndp+=((skill1==3)?25:0)+((skill2==3)?35:0)+((skill3==3)?50:0);
+        const sv4=((skill1==4)?100:0)+((skill2==4)?100:0)+((skill3==4)?200:0);
+        let sdp=new Number(form.sdp.value);
+        sdp+=((skill3==5)?40:0)+((skill1==5)?15:0)+((skill1==6)?20:0)+((skill2==5)?30:0)+((skill3==7)?30:0)+((skill3==8)?50:0);
+        const sv10=((skill3==10)?75:0);
         let atk=form.atk.value*(1+ap/100);
         let as=form.as.value*(1+cp/100);
         let asr;if(as>5000)asr=0.8;
@@ -58,7 +58,7 @@
         let ND=2*atk*(1+(ap+ndp+sv4+sv10)/100)*asd;
         let SD=atk*(1+(sv4+sdp+sv10)/100)*asd;
         alert("一般傷害:"+Math.round(ND)+"\n技能傷害:"+Math.round(SD));
-        form.record.value+="一般傷害:"+Math.round(ND)+"\n技能傷害:"+Math.round(SD)+"\n";
+        form.record.value+="一般傷害:"+Math.round(ND)+"\n技能傷害:"+Math.round(SD)+"\n\n";
     }
 </script>
 
