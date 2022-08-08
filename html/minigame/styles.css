@@ -1,0 +1,74 @@
+html {
+        height: 100%;
+}
+body {
+        background-image: url("bg.png");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+}
+#canvas-wrapper{
+        width: 500px;
+        height: 500px;
+        position: relative;
+        margin: 50px auto;
+}
+#board{
+        display: block;
+        margin: auto;
+        background-image: url("ft_bg.jpg");
+        border: 10px solid black;
+        box-shadow: 5px 5px 5px #6F6767;
+}
+#controller{
+        position: absolute;
+        top: 325px;
+        left: 365px;
+        background-color: rgba(0, 85, 116, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 10px;
+}
+#controller .choose-btn{
+        display: inline-block;
+        padding: 8px 36px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: bold;
+        color:orange;
+        margin-top: 7px;
+        white-space: nowrap;
+        box-shadow: 3px 3px 3px #6F6767;
+}
+#controller #atk-choose-btn{
+        background-color: black;
+}
+#controller #def-choose-btn{
+        background-color: green;
+}
+#controller #rec-choose-btn{
+        background-color: blue;
+}
+#record{
+        position: absolute;
+        top: 325px;
+        left: 15px;
+        background-color: rgba(0, 85, 116, 0.7);
+        padding: 90px 165px;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 10px;
+}
+#record-msg{
+        position: absolute;
+        top: 350px;
+        left: 40px;
+        background-color: #DDDDDD;
+        padding: 60px 140px;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 10px;
+        box-shadow: 5px 5px 5px 5px #6F6767;
+}

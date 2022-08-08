@@ -1,0 +1,27 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MiniGame</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <div id="canvas-wrapper">
+        <canvas id="board" width="500px" height="500px"></canvas>
+        <div id="controller">
+            控制面板
+            <a href="#" class="choose-btn" id="atk-choose-btn">攻擊</a>
+            <a href="#" class="choose-btn" id="def-choose-btn">防禦</a>
+            <a href="#" class="choose-btn" id="rec-choose-btn">回魔</a>
+        </div>
+        <div id="record"></div>
+        <div id="record-msg"></div>
+    </div>
+    <script src="script.js"></script>
+    <script>drawbg();</script>
+    <script>drawline();</script>
+    <script>drawHp();</script>
+    <script>drawPP();</script>
+
+</body>
+</html>
