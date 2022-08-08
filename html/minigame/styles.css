@@ -72,3 +72,9 @@ body {
         font-size: 10px;
         box-shadow: 5px 5px 5px 5px #6F6767;
 }
+#dice{
+        position: absolute;
+        top: 10px; left: 10px;
+        background-image: url("dice.gif");
+        padding: 50%;
+}

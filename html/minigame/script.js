@@ -1,5 +1,7 @@
 var board=document.getElementById("board");
 var ctx=board.getContext('2d');
+var dice=document.getElementById("dice");
+dice.style.display="none";
 var Hp=[24,24];
 var PP=[12,12];
 function drawbg(){
@@ -27,7 +29,7 @@ function drawline(){
     ctx.closePath();
 }
 function drawHp(){
-    ctx.clearRect(0, 0, 1000, 20);
+    ctx.clearRect(0, 0, 500, 20);
     ctx.beginPath();
     ctx.fillStyle="#FF0000";
     ctx.moveTo(0,0);
@@ -47,7 +49,7 @@ function drawHp(){
     ctx.fillText("Hp:"+Hp[1],450,12);
 }
 function drawPP(){
-    ctx.clearRect(0, 20, 1000,40);
+    ctx.clearRect(0, 20, 500,40);
     ctx.beginPath();
     ctx.fillStyle="#00DDDD";
     ctx.moveTo(0,20);
@@ -66,6 +68,16 @@ function drawPP(){
     ctx.fillText("PP:"+PP[0],0,33);
     ctx.fillText("PP:"+PP[1],450,33);
 }
+function dice(){
+    dice.style.display="";
+    setTimeout(function(){dice.style.display="none";},3000);
+}
 document.getElementById("atk-choose-btn").onclick = function(event){
+    
+}
+document.getElementById("def-choose-btn").onclick = function(event){
+    
+}
+document.getElementById("rec-choose-btn").onclick = function(event){
     
 }
