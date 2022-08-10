@@ -56,25 +56,26 @@ body {
         top: 325px;
         left: 15px;
         background-color: rgba(0, 85, 116, 0.7);
-        padding: 90px 165px;
+        padding: 15px 18px;
         border-radius: 10px;
         text-align: center;
         font-size: 10px;
 }
-#record-msg{
-        position: absolute;
-        top: 350px;
-        left: 40px;
+#recordmsg{
         background-color: #DDDDDD;
-        padding: 60px 140px;
+        padding: 5px 5px;
         border-radius: 10px;
-        text-align: center;
-        font-size: 10px;
-        box-shadow: 5px 5px 5px 5px #6F6767;
+        box-shadow:  5px 5px 5px #6F6767;
 }
 #dice{
         position: absolute;
         top: 10px; left: 10px;
         background-image: url("dice.gif");
+        padding: 50%;
+}
+#gameend{
+        position: absolute;
+        top: 10px; left: 10px;
+        background-image: ;
         padding: 50%;
 }
