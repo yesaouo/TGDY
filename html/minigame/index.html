@@ -11,27 +11,23 @@
     <div id="canvas-wrapper">
         <canvas id="board" width="500px" height="500px"></canvas>
         <div id="controller">
-            控制面板
+            控制面板<br>
             <a href="#" class="choose-btn" id="atk-choose-btn">攻擊</a>
             <a href="#" class="choose-btn" id="def-choose-btn">防禦</a>
             <a href="#" class="choose-btn" id="rec-choose-btn">回魔</a>
+            <div id="reboot-btn">重新開始</div>
         </div>
         <div id="record">
             戰鬥紀錄<br>
             <div id="recordmsg"> 
                 <textarea id="text" rows="8" cols="32" readonly></textarea>
             </div>
-        </div>
-        <div id="bg">
-            <div id="dice"></div>
-            <div id="win"></div>
-            <div id="lose"></div>
-        </div> 
+        </div>        
+        <div id="dice"></div>
+        <div id="win"></div>
+        <div id="lose"></div>
     </div>
     <script src="script.js"></script>
-    <script>drawbg();</script>
-    <script>drawline();</script>
-    <script>drawHp();</script>
-    <script>drawPP();</script>
+    <script>Initialization();</script>
 </body>
 </html>

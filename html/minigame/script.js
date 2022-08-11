@@ -4,12 +4,33 @@ var dice=document.getElementById("dice");
 var win=document.getElementById("win");
 var lose=document.getElementById("lose");
 var text=document.getElementById("text");
-dice.style.display="none";
-win.style.display="none";
-lose.style.display="none";
-var Hp=[24,24];
-var PP=[12,12];
-function drawbg(){
+var atk_btn=document.getElementById("atk-choose-btn");
+var def_btn=document.getElementById("def-choose-btn");
+var rec_btn=document.getElementById("rec-choose-btn");
+var reboot_btn=document.getElementById("reboot-btn");
+var Hp=[];
+var PP=[];
+function Reboot(){
+    Hp[0]=24;
+    Hp[1]=24;
+    PP[0]=12;
+    PP[1]=12;
+    atk_btn.style.display="";
+    def_btn.style.display="";
+    rec_btn.style.display="";
+    reboot_btn.style.display="none";
+    dice.style.display="none";
+    win.style.display="none";
+    lose.style.display="none";
+    text.value="";
+    drawHp();
+    drawPP();
+}
+function Initialization() {
+    drawBg();
+    Reboot();
+}
+function drawBg(){
     ctx.beginPath();
     ctx.fillStyle="#FFF2CC";
     ctx.moveTo(0,300);
@@ -17,8 +38,7 @@ function drawbg(){
     ctx.lineTo(500,500);
     ctx.lineTo(0,500);
     ctx.fill();
-}
-function drawline(){
+    ctx.closePath();
     ctx.beginPath();
     ctx.fillStyle="black";
     ctx.moveTo(0,300);
@@ -73,12 +93,12 @@ function drawPP(){
     ctx.fillText("PP:"+PP[0],0,33);
     ctx.fillText("PP:"+PP[1],450,33);
 }
+function getRandom(n){
+    return Math.floor(Math.random()*n)+1;
+}
 function Dice(){
     dice.style.display="";
     setTimeout(function(){dice.style.display="none";},3000);
-}
-function getRandom(n){
-    return Math.floor(Math.random()*n)+1;
 }
 function Choose(n){
     switch (n){
@@ -86,12 +106,6 @@ function Choose(n){
         case 2: return "防禦";
         default: return "回魔";
     }
-}
-function Win(){
-    win.style.display="";
-}
-function Lose(){
-    lose.style.display="";
 }
 function Battle(p1_choose){
     let p2_choose = getRandom(3);
@@ -114,66 +128,74 @@ function Battle(p1_choose){
                 break;
         }
     }
-    let str = "你選擇" + Choose(p1_choose) + ",對手選擇" + Choose(p2_choose);
+    text.value = "你選擇" + Choose(p1_choose) + ",對手選擇" + Choose(p2_choose);
     const dice1 = getRandom(6), dice2 = getRandom(6);
     Dice();
-    str += "\n擲骰中. 擲骰中.. 擲骰中...\n你的點數是" + dice1 + ",對手的點數是" + dice2 + "\n";
+    text.value += "\n擲骰中. 擲骰中.. 擲骰中...\n你的點數是" + dice1 + ",對手的點數是" + dice2 + "\n";
     let res1 = 0, res2 = 0;
     if (p1_choose == 1 && p2_choose == 1)
     {
         if (dice1 > dice2) {
             res2 = dice1;
-            str += "對手無法攻擊到你,而你對他造成了" + res2 + "點傷害";
+            text.value += "對手無法攻擊到你,而你對他造成了" + res2 + "點傷害";
         }
         else if (dice1 < dice2) {
             res1 = dice2;
-            str += "你無法攻擊到對手,而他對你造成了" + res1 + "點傷害";
-        }else str += "高手過招，無人受傷";
+            text.value += "你無法攻擊到對手,而他對你造成了" + res1 + "點傷害";
+        }else text.value += "高手過招，無人受傷";
         
     }
-    if (p1_choose == 2 && p2_choose == 2) str += "雙方皆損失了" + dice1 + "點能量";
+    if (p1_choose == 2 && p2_choose == 2) text.value += "雙方皆損失了" + dice1 + "點能量";
     if (p1_choose == 1 && p2_choose == 2)
     {
-        if (dice1 > dice2) { res2 = dice1 - dice2; str += "你對對手造成了" + res2 + "點傷害"; }
-        if (dice1 < dice2) { res1 = dice2 - dice1; str += "對手對你造成了" + res1 + "點傷害，並回復了" + res1 + "點血量"; Hp[1] += res1; }
-        if (dice1 == dice2) str += "雙方皆損失了" + dice1 + "點能量";
+        if (dice1 > dice2) { res2 = dice1 - dice2; text.value += "你對對手造成了" + res2 + "點傷害"; }
+        if (dice1 < dice2) { res1 = dice2 - dice1; text.value += "對手對你造成了" + res1 + "點傷害，並回復了" + res1 + "點血量"; Hp[1] += res1; }
+        if (dice1 == dice2) text.value += "雙方皆損失了" + dice1 + "點能量";
     }
     if (p1_choose == 2 && p2_choose == 1)
     {
-        if (dice1 < dice2) { res1 = dice2 - dice1; str += "對手對你造成了" + res1 + "點傷害"; }
-        if (dice1 > dice2) { res2 = dice1 - dice2; str += "你對對手造成了" + res2 + "點傷害，並回復了" + res2 + "點血量"; Hp[0] += res2; }
-        if (dice1 == dice2) str += "雙方皆損失了" + dice1 + "點能量";
+        if (dice1 < dice2) { res1 = dice2 - dice1; text.value += "對手對你造成了" + res1 + "點傷害"; }
+        if (dice1 > dice2) { res2 = dice1 - dice2; text.value += "你對對手造成了" + res2 + "點傷害，並回復了" + res2 + "點血量"; Hp[0] += res2; }
+        if (dice1 == dice2) text.value += "雙方皆損失了" + dice1 + "點能量";
     }
-    if (p1_choose == 3 && p2_choose == 3) { str += "你回復了" + dice1 + "點能量，對手回復了" + dice2 + "點能量"; PP[0] += dice1 * 2; PP[1] += dice2 * 2; }
-    if (p1_choose == 2 && p2_choose == 3) { str += "對手回復了" + dice2 + "點能量，而你白白損失了" + dice1 + "點能量"; PP[1] += dice2 * 2; }
-    if (p1_choose == 3 && p2_choose == 2) { str += "你回復了" + dice1 + "點能量，而對手白白損失了" + dice2 + "點能量"; PP[0] += dice1 * 2; }
-    if (p1_choose == 1 && p2_choose == 3) { res2 = dice1; str += "你對對手造成了" + res2 + "點傷害，對手回復了" + dice2 + "點能量"; PP[1] += dice2 * 2; }
-    if (p1_choose == 3 && p2_choose == 1) { res1 = dice2; str += "你回復了" + dice1 + "點能量，對手對你造成了" + res1 + "點傷害"; PP[0] += dice1 * 2; }
+    if (p1_choose == 3 && p2_choose == 3) { text.value += "你回復了" + dice1 + "點能量，對手回復了" + dice2 + "點能量"; PP[0] += dice1 * 2; PP[1] += dice2 * 2; }
+    if (p1_choose == 2 && p2_choose == 3) { text.value += "對手回復了" + dice2 + "點能量，而你白白損失了" + dice1 + "點能量"; PP[1] += dice2 * 2; }
+    if (p1_choose == 3 && p2_choose == 2) { text.value += "你回復了" + dice1 + "點能量，而對手白白損失了" + dice2 + "點能量"; PP[0] += dice1 * 2; }
+    if (p1_choose == 1 && p2_choose == 3) { res2 = dice1; text.value += "你對對手造成了" + res2 + "點傷害，他回復了" + dice2 + "點能量"; PP[1] += dice2 * 2; }
+    if (p1_choose == 3 && p2_choose == 1) { res1 = dice2; text.value += "你回復了" + dice1 + "點能量，對手對你造成了" + res1 + "點傷害"; PP[0] += dice1 * 2; }
     Hp[1] -= res2; Hp[0] -= res1; PP[0] -= dice1; PP[1] -= dice2;
     if (Hp[0] > 0 && Hp[1] > 0 && PP[0] >= 0 && PP[1] >= 0){
-        str += "\n你現在有" + Hp[0] + "點血量，" + PP[0] + "點能量\n對手現在有" + Hp[1] + "點血量，" + PP[1] + "點能量";
+        text.value += "\n你現在有" + Hp[0] + "點血量，" + PP[0] + "點能量\n對手現在有" + Hp[1] + "點血量，" + PP[1] + "點能量";
         drawHp();
         drawPP();
-        text.value=str;
     }else{
         if (Hp[0] <= 0||PP[0] < 0) {
-            if(Hp[0]<=0)str += "\n血量歸零";
-            if(PP[0]<0)str += "\n魔力枯竭而死";
-            str+="\nYou Lose!";
-            Lose();
+            if(Hp[0]<=0)text.value += "\n你的血量歸零";
+            if(PP[0]<0)text.value += "\n你的魔力枯竭";
+            text.value+="\nYou Lose!";
+            lose.style.display="";
         }else {
-            str+="\nYou Win!";
-            Win();
+            if(Hp[1]<=0)text.value += "\n對手血量歸零";
+            if(PP[1]<0)text.value += "\n對手魔力枯竭";
+            text.value+="\nYou Win!";
+            win.style.display="";
         }
-        text.value = str+"\n本遊戲由夜颯製作，感謝您的遊玩";
+        text.value += "\n本遊戲由夜颯製作，感謝您的遊玩";
+        atk_btn.style.display="none";
+        def_btn.style.display="none";
+        rec_btn.style.display="none";
+        reboot_btn.style.display="";
     }
 }
-document.getElementById("atk-choose-btn").onclick = function(event){
+atk_btn.onclick = function(event){
     Battle(1);
 }
-document.getElementById("def-choose-btn").onclick = function(event){
+def_btn.onclick = function(event){
     Battle(2);
 }
-document.getElementById("rec-choose-btn").onclick = function(event){
+rec_btn.onclick = function(event){
     Battle(3);
+}
+reboot_btn.onclick = function(event){
+    Reboot();
 }

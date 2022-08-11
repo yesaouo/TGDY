@@ -30,6 +30,7 @@ body {
         border-radius: 10px;
         text-align: center;
         font-size: 10px;
+        z-index: 1;
 }
 #controller .choose-btn{
         display: inline-block;
@@ -51,19 +52,28 @@ body {
 #controller #rec-choose-btn{
         background-color: blue;
 }
+#reboot-btn{
+        color:orange;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: #DDDDDD;
+        padding: 10px 40px;
+        border-radius: 10px;
+        box-shadow:  5px 5px 5px #6F6767;
+}
 #record{
         position: absolute;
         top: 325px;
         left: 15px;
         background-color: rgba(0, 85, 116, 0.7);
-        padding: 15px 18px;
+        padding: 14px 20px;
         border-radius: 10px;
         text-align: center;
         font-size: 10px;
 }
 #recordmsg{
         background-color: #DDDDDD;
-        padding: 5px 5px;
+        padding: 5px;
         border-radius: 10px;
         box-shadow:  5px 5px 5px #6F6767;
 }
@@ -72,6 +82,7 @@ body {
         top: 10px; left: 10px;
         background-image: url("dice.gif");
         padding: 50%;
+        z-index: 9999;
 }
 #win{
         position: absolute;
