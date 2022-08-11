@@ -70,6 +70,7 @@ body {
         border-radius: 10px;
         text-align: center;
         font-size: 10px;
+        z-index: 1;
 }
 #recordmsg{
         background-color: #DDDDDD;
