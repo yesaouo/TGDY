@@ -1,8 +1,12 @@
 var board=document.getElementById("board");
 var ctx=board.getContext('2d');
 var dice=document.getElementById("dice");
+var win=document.getElementById("win");
+var lose=document.getElementById("lose");
 var text=document.getElementById("text");
 dice.style.display="none";
+win.style.display="none";
+lose.style.display="none";
 var Hp=[24,24];
 var PP=[12,12];
 function drawbg(){
@@ -83,8 +87,11 @@ function Choose(n){
         default: return "回魔";
     }
 }
-function reBattle(){
-
+function Win(){
+    win.style.display="";
+}
+function Lose(){
+    lose.style.display="";
 }
 function Battle(p1_choose){
     let p2_choose = getRandom(3);
@@ -149,12 +156,16 @@ function Battle(p1_choose){
         drawPP();
         text.value=str;
     }else{
-        if (Hp[0] <= 0) {
-            text.value = str+"\n抱歉，你已經死了!";
-        }else if (PP[0] < 0) {
-            text.value = str+"\n死因:精盡人亡";
-        }else text.value = str+"\nYou Win!";
-        text.value += "\n本遊戲由夜颯製作，感謝您的遊玩";
+        if (Hp[0] <= 0||PP[0] < 0) {
+            if(Hp[0]<=0)str += "\n血量歸零";
+            if(PP[0]<0)str += "\n魔力枯竭而死";
+            str+="\nYou Lose!";
+            Lose();
+        }else {
+            str+="\nYou Win!";
+            Win();
+        }
+        text.value = str+"\n本遊戲由夜颯製作，感謝您的遊玩";
     }
 }
 document.getElementById("atk-choose-btn").onclick = function(event){

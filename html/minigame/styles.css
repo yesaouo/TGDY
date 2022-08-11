@@ -73,9 +73,17 @@ body {
         background-image: url("dice.gif");
         padding: 50%;
 }
-#gameend{
+#win{
         position: absolute;
         top: 10px; left: 10px;
-        background-image: ;
+        background-image: url("win.png");
         padding: 50%;
+        background-repeat: no-repeat;
+}
+#lose{
+        position: absolute;
+        top: 10px; left: 10px;
+        background-image: url("lose.png");
+        padding: 50%;
+        background-repeat: no-repeat;
 }

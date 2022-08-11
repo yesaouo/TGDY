@@ -1,6 +1,9 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MiniGame</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -16,11 +19,14 @@
         <div id="record">
             戰鬥紀錄<br>
             <div id="recordmsg"> 
-                <textarea id="text" rows="8" cols="32" readonly"></textarea>
+                <textarea id="text" rows="8" cols="32" readonly></textarea>
             </div>
         </div>
-        <div id="dice"></div>
-        <div id="gameend"></div>
+        <div id="bg">
+            <div id="dice"></div>
+            <div id="win"></div>
+            <div id="lose"></div>
+        </div> 
     </div>
     <script src="script.js"></script>
     <script>drawbg();</script>
