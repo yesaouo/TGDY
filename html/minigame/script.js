@@ -161,8 +161,8 @@ function Battle(p1_choose){
     if (p1_choose == 3 && p2_choose == 3) { text.value += "你回復了" + dice1 + "點能量，對手回復了" + dice2 + "點能量"; PP[0] += dice1 * 2; PP[1] += dice2 * 2; }
     if (p1_choose == 2 && p2_choose == 3) { text.value += "對手回復了" + dice2 + "點能量，而你白白損失了" + dice1 + "點能量"; PP[1] += dice2 * 2; }
     if (p1_choose == 3 && p2_choose == 2) { text.value += "你回復了" + dice1 + "點能量，而對手白白損失了" + dice2 + "點能量"; PP[0] += dice1 * 2; }
-    if (p1_choose == 1 && p2_choose == 3) { res2 = dice1; text.value += "你對對手造成了" + res2 + "點傷害，他回復了" + dice2 + "點能量"; PP[1] += dice2 * 2; }
-    if (p1_choose == 3 && p2_choose == 1) { res1 = dice2; text.value += "你回復了" + dice1 + "點能量，對手對你造成了" + res1 + "點傷害"; PP[0] += dice1 * 2; }
+    if (p1_choose == 1 && p2_choose == 3) { res2 = dice1; text.value += "你對對手造成了" + res2 + "點傷害\n而他回復了" + dice2 + "點能量"; PP[1] += dice2 * 2; }
+    if (p1_choose == 3 && p2_choose == 1) { res1 = dice2; text.value += "對手對你造成了" + res1 + "點傷害\n而你回復了" + dice1 + "點能量"; PP[0] += dice1 * 2; }
     Hp[1] -= res2; Hp[0] -= res1; PP[0] -= dice1; PP[1] -= dice2;
     if (Hp[0] > 0 && Hp[1] > 0 && PP[0] >= 0 && PP[1] >= 0){
         text.value += "\n你現在有" + Hp[0] + "點血量，" + PP[0] + "點能量\n對手現在有" + Hp[1] + "點血量，" + PP[1] + "點能量";
