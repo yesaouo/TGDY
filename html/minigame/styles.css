@@ -20,13 +20,16 @@ body {
         background-image: url("ft_bg.jpg");
         border: 10px solid black;
         box-shadow: 5px 5px 5px #6F6767;
+        z-index: -1;
 }
 #controller{
         position: absolute;
         top: 325px;
         left: 365px;
         background-color: rgba(0, 85, 116, 0.7);
-        padding: 19px 20px;
+        height: 150px;
+        width: 110px;
+        padding: 15px;
         border-radius: 10px;
         text-align: center;
         font-size: 10px;
@@ -42,6 +45,7 @@ body {
         margin-top: 7px;
         white-space: nowrap;
         box-shadow: 3px 3px 3px #6F6767;
+        z-index: 3;
 }
 #controller #atk-choose-btn{
         background-color: black;
@@ -57,7 +61,7 @@ body {
         font-size: 20px;
         font-weight: bold;
         background-color: #DDDDDD;
-        padding: 10px 40px;
+        padding: 15px 40px;
         border-radius: 10px;
         box-shadow:  5px 5px 5px #6F6767;
 }
@@ -66,7 +70,9 @@ body {
         top: 325px;
         left: 15px;
         background-color: rgba(0, 85, 116, 0.7);
-        padding: 12px 31px;
+        height: 150px;
+        width: 300px;
+        padding: 15px;
         border-radius: 10px;
         text-align: center;
         font-size: 10px;
@@ -77,13 +83,14 @@ body {
         padding: 5px;
         border-radius: 10px;
         box-shadow:  5px 5px 5px #6F6767;
+        z-index: 2;
 }
 #dice{
         position: absolute;
         top: 10px; left: 10px;
         background-image: url("dice.gif");
         padding: 50%;
-        z-index: 9999;
+        z-index: 100;
 }
 #win{
         position: absolute;
@@ -91,6 +98,7 @@ body {
         background-image: url("win.png");
         padding: 50%;
         background-repeat: no-repeat;
+        z-index: 0;
 }
 #lose{
         position: absolute;
@@ -98,4 +106,62 @@ body {
         background-image: url("lose.png");
         padding: 50%;
         background-repeat: no-repeat;
+        z-index: 0;
+}
+#player1{
+        position: absolute;
+        top: 160px; left: 10px;
+        background-image: url("character/figure_24_01.png");
+        padding: 50%;
+        background-repeat: no-repeat;
+        z-index: 0;
+}
+#player2{
+        position: absolute;
+        top: 160px; left: 390px;
+        background-image: url("character/p1_0.png");
+        padding: 50%;
+        background-repeat: no-repeat;
+        z-index: 0;
+}
+#player1-choose{
+        position: absolute;
+        top: 225px; left: 40px;
+        background-image: url("atk.png");
+        padding: 50%;
+        background-repeat: no-repeat;
+        z-index: 0;
+}
+#player2-choose{
+        position: absolute;
+        top: 225px; left: 410px;
+        background-image: url("atk.png");
+        padding: 50%;
+        background-repeat: no-repeat;
+        z-index: 0;
+}
+#music{
+        position: absolute;
+        top: 25px;
+        left: 212px;
+        background-color: #6F6767;
+        height: 25px;
+        width: 98px;
+        border-radius: 100px;
+        z-index: 1;
+}
+#music .choose-btn{
+        display: inline-block;
+        padding: 15px;
+        background-repeat: no-repeat;
+        z-index: 3;
+}
+#music #previous-choose-btn{
+        background-image: url(MP3/previous.png);
+}
+#music #play-choose-btn{
+        background-image: url(MP3/play.png);
+}
+#music #next-choose-btn{
+        background-image: url(MP3/next.png);
 }
