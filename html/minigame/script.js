@@ -2,7 +2,6 @@ var board=document.getElementById("board");
 var ctx=board.getContext('2d');
 var dice=document.getElementById("dice");
 var win=document.getElementById("win");
-var lose=document.getElementById("lose");
 var text=document.getElementById("text");
 var atk_btn=document.getElementById("atk-choose-btn");
 var def_btn=document.getElementById("def-choose-btn");
@@ -107,7 +106,6 @@ function Reboot(){
     reboot_btn.style.display="none";
     dice.style.display="none";
     win.style.display="none";
-    lose.style.display="none";
     text.value="";
     player1_choose.style.left="40px";
     player2_choose.style.left="410px";
@@ -156,12 +154,12 @@ function Battle1(p1_choose){
     text.value = "你選擇" + Choose(p1_choose) + ",對手選擇" + Choose(p2_choose);
     playerchx[0]=40;
     playerchx[1]=410;
-    if(p1_choose==1)player1_choose.style.backgroundImage="url('atk.png')";
-    if(p1_choose==2)player1_choose.style.backgroundImage="url('def.png')";
-    if(p1_choose==3)player1_choose.style.backgroundImage="url('rec.png')";
-    if(p2_choose==1)player2_choose.style.backgroundImage="url('atk.png')";
-    if(p2_choose==2)player2_choose.style.backgroundImage="url('def.png')";
-    if(p2_choose==3)player2_choose.style.backgroundImage="url('rec.png')";
+    if(p1_choose==1)player1_choose.style.backgroundImage="url('others/atk.png')";
+    if(p1_choose==2)player1_choose.style.backgroundImage="url('others/def.png')";
+    if(p1_choose==3)player1_choose.style.backgroundImage="url('others/rec.png')";
+    if(p2_choose==1)player2_choose.style.backgroundImage="url('others/atk.png')";
+    if(p2_choose==2)player2_choose.style.backgroundImage="url('others/def.png')";
+    if(p2_choose==3)player2_choose.style.backgroundImage="url('others/rec.png')";
     player1_choose.style.display="";
     player2_choose.style.display="";
     Animate(p1_choose,p2_choose);
@@ -220,7 +218,7 @@ function Battle2(p1_choose,p2_choose){
     if (p1_choose == 2 && p2_choose == 1){
         if (dice1 < dice2) { res1 = dice2 - dice1; text.value += "對手對你造成了" + res1 + "點傷害"; }
         if (dice1 > dice2) { res2 = dice1 - dice2; text.value += "你對對手造成了" + res2 + "點傷害，並回復了" + res2 + "點血量"; Hp[0] += res2; }
-        if (dice1 == dice2) text.value += "雙方皆損失了" + dice1 + "點能量";
+        if (dice1 == dice2) text.value += "高手過招，無人受傷";
     }
     if (p1_choose == 3 && p2_choose == 3) { text.value += "你回復了" + dice1 + "點能量，對手回復了" + dice2 + "點能量"; PP[0] += dice1 * 2; PP[1] += dice2 * 2; }
     if (p1_choose == 2 && p2_choose == 3) { text.value += "對手回復了" + dice2 + "點能量，你白白損失了" + dice1 + "點能量"; PP[1] += dice2 * 2; }
@@ -237,11 +235,13 @@ function Battle2(p1_choose,p2_choose){
             if(Hp[0]<=0)text.value += "\n你的血量歸零";
             if(PP[0]<0)text.value += "\n你的魔力枯竭";
             text.value+="\nYou Lose!";
-            lose.style.display="";
+            win.style.backgroundImage="url('others/lose.png')";
+            win.style.display="";
         }else {
             if(Hp[1]<=0)text.value += "\n對手血量歸零";
             if(PP[1]<0)text.value += "\n對手魔力枯竭";
             text.value+="\nYou Win!";
+            win.style.backgroundImage="url('others/win.png')";
             win.style.display="";
         }
         text.value += "\n本遊戲由夜颯製作，感謝您的遊玩";
@@ -260,25 +260,25 @@ function Battle2(p1_choose,p2_choose){
 const audio = document.createElement("audio");
 var song=1;
 var play = true;
-audio.src = "MP3/"+song+".mp3";
+audio.src = "music/"+song+".mp3";
 audio.volume=0.1;
 function playAudio() {
     audio.play();
-    play_btn.style.backgroundImage="url('MP3/pause.png')"
+    play_btn.style.backgroundImage="url('music/pause.png')"
 }
 function pauseAudio(){
     audio.pause();
-    play_btn.style.backgroundImage="url('MP3/play.png')"
+    play_btn.style.backgroundImage="url('music/play.png')"
 }
 function nextAudio() {
     if(song == 7)song = 0;
     song++;
-    audio.src = "MP3/"+song+".mp3";
+    audio.src = "music/"+song+".mp3";
 }
 function previousAudio() {
     if(song == 0)song = 8;
     song--;
-    audio.src = "MP3/"+song+".mp3";
+    audio.src = "music/"+song+".mp3";
 }
 
 //onclick

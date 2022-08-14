@@ -2,7 +2,7 @@ html {
         height: 100%;
 }
 body {
-        background-image: url("bg.png");
+        background-image: url("others/role_bg05.png");
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-position: center;
@@ -11,6 +11,11 @@ body {
 textarea {
         resize: none;
         font-size: 12px;
+        background-image: url("character/118131.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% auto;
+        font-weight: bold;
 }
 #canvas-wrapper{
         position: relative;
@@ -21,7 +26,7 @@ textarea {
 #board{
         display: block;
         position: absolute;
-        background-image: url("ft_bg.jpg");
+        background-image: url("others/ft_bg.jpg");
         background-repeat: no-repeat;
         border: 10px solid black;
         box-shadow: 5px 5px 5px #6F6767;
@@ -93,22 +98,14 @@ textarea {
 #dice{
         position: absolute;
         top: 10px; left: 10px;
-        background-image: url("dice.gif");
+        background-image: url("others/dice.gif");
         padding: 50%; 
         z-index: 100;
 }
 #win{
         position: absolute;
         top: 10px; left: 10px;
-        background-image: url("win.png");
-        padding: 50%;
-        background-repeat: no-repeat;
-        z-index: 0;
-}
-#lose{
-        position: absolute;
-        top: 10px; left: 10px;
-        background-image: url("lose.png");
+        background-image: url("others/win.png");
         padding: 50%;
         background-repeat: no-repeat;
         z-index: 0;
@@ -132,7 +129,7 @@ textarea {
 #player1-choose{
         position: absolute;
         top: 225px; left: 40px;
-        background-image: url("atk.png");
+        background-image: url("others/atk.png");
         padding: 50%;
         background-repeat: no-repeat;
         z-index: 0;
@@ -140,7 +137,7 @@ textarea {
 #player2-choose{
         position: absolute;
         top: 225px; left: 410px;
-        background-image: url("atk.png");
+        background-image: url("others/atk.png");
         padding: 50%;
         background-repeat: no-repeat;
         z-index: 0;
@@ -163,11 +160,11 @@ textarea {
         z-index: 3;
 }
 #music #previous-choose-btn{
-        background-image: url(MP3/previous.png);
+        background-image: url(music/previous.png);
 }
 #music #play-choose-btn{
-        background-image: url(MP3/play.png);
+        background-image: url(music/play.png);
 }
 #music #next-choose-btn{
-        background-image: url(MP3/next.png);
+        background-image: url(music/next.png);
 }
