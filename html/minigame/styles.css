@@ -13,15 +13,16 @@ textarea {
         font-size: 12px;
 }
 #canvas-wrapper{
+        position: relative;
         width: 500px;
         height: 500px;
-        position: relative;
         margin: 50px auto;
 }
 #board{
         display: block;
         margin: auto;
         background-image: url("ft_bg.jpg");
+        background-repeat: no-repeat;
         border: 10px solid black;
         box-shadow: 5px 5px 5px #6F6767;
         z-index: -1;
@@ -91,9 +92,10 @@ textarea {
 }
 #dice{
         position: absolute;
-        top: 10px; left: 10px;
+        top: 11px; left: 11px;
         background-image: url("dice.gif");
         padding: 50%;
+        background-repeat: no-repeat;
         z-index: 100;
 }
 #win{
