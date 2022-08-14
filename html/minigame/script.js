@@ -211,7 +211,7 @@ function Battle2(p1_choose,p2_choose){
         }else text.value += "高手過招，無人受傷";
         
     }
-    if (p1_choose == 2 && p2_choose == 2) text.value += "雙方皆損失了" + dice1 + "點能量";
+    if (p1_choose == 2 && p2_choose == 2) text.value += "無人出手，防個寂寞";
     if (p1_choose == 1 && p2_choose == 2){
         if (dice1 > dice2) { res2 = dice1 - dice2; text.value += "你對對手造成了" + res2 + "點傷害"; }
         if (dice1 < dice2) { res1 = dice2 - dice1; text.value += "對手對你造成了" + res1 + "點傷害，並回復了" + res1 + "點血量"; Hp[1] += res1; }

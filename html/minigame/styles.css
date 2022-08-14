@@ -20,7 +20,7 @@ textarea {
 }
 #board{
         display: block;
-        margin: auto;
+        position: absolute;
         background-image: url("ft_bg.jpg");
         background-repeat: no-repeat;
         border: 10px solid black;
@@ -92,10 +92,9 @@ textarea {
 }
 #dice{
         position: absolute;
-        top: 11px; left: 11px;
+        top: 10px; left: 10px;
         background-image: url("dice.gif");
-        padding: 50%;
-        background-repeat: no-repeat;
+        padding: 50%; 
         z-index: 100;
 }
 #win{
