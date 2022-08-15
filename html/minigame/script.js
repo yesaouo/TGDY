@@ -6,6 +6,7 @@ var text=document.getElementById("text");
 var atk_btn=document.getElementById("atk-choose-btn");
 var def_btn=document.getElementById("def-choose-btn");
 var rec_btn=document.getElementById("rec-choose-btn");
+var nextturn_btn=document.getElementById("nextturn-btn");
 var reboot_btn=document.getElementById("reboot-btn");
 var player1=document.getElementById("player1");
 var player2=document.getElementById("player2");
@@ -14,9 +15,12 @@ var play_btn=document.getElementById("play-choose-btn");
 var next_btn=document.getElementById("next-choose-btn");
 var player1_choose=document.getElementById("player1-choose");
 var player2_choose=document.getElementById("player2-choose");
-var Hp=[];
-var PP=[];
+const enemyHp=[25,16,30,24];
+const enemyPP=[12,20,10,18];
+var Hp=[24,0];
+var PP=[12,0];
 var playerchx=[];
+var turn=0;
 function Initialization() {
     drawBg();
     Reboot();
@@ -63,11 +67,32 @@ function drawHp(){
     ctx.fillStyle="#00DDDD";
     ctx.fillText("Hp:"+Hp[0],0,12);
     ctx.fillText("Hp:"+Hp[1],450,12);
-    if(Hp[1]>20)player2.style.backgroundImage="url('character/p1_0.png')";
-    if(Hp[1]<=20)player2.style.backgroundImage="url('character/p1_1.png')";
-    if(Hp[1]<=15)player2.style.backgroundImage="url('character/p1_2.png')";
-    if(Hp[1]<=10)player2.style.backgroundImage="url('character/p1_3.png')";
-    if(Hp[1]<=5)player2.style.backgroundImage="url('character/p1_4.png')";
+    if(Hp[0]>20)player1.style.backgroundImage="url('character/p1_0.png')";
+    if(Hp[0]<=20)player1.style.backgroundImage="url('character/p1_1.png')";
+    if(Hp[0]<=15)player1.style.backgroundImage="url('character/p1_2.png')";
+    if(Hp[0]<=10)player1.style.backgroundImage="url('character/p1_3.png')";
+    if(Hp[0]<=5)player1.style.backgroundImage="url('character/p1_4.png')";
+    if(turn==1){
+        if(Hp[1]>20)player2.style.backgroundImage="url('character/e1_0.png')";
+        if(Hp[1]<=20)player2.style.backgroundImage="url('character/e1_1.png')";
+        if(Hp[1]<=15)player2.style.backgroundImage="url('character/e1_2.png')";
+        if(Hp[1]<=10)player2.style.backgroundImage="url('character/e1_3.png')";
+        if(Hp[1]<=5)player2.style.backgroundImage="url('character/e1_4.png')";
+    }
+    if(turn==2)player2.style.backgroundImage="url('character/e2_0.png')";
+    if(turn==3){
+        if(Hp[1]>21)player2.style.backgroundImage="url('character/e3_0.png')";
+        if(Hp[1]<=21)player2.style.backgroundImage="url('character/e3_1.png')";
+        if(Hp[1]<=14)player2.style.backgroundImage="url('character/e3_2.png')";
+        if(Hp[1]<=7)player2.style.backgroundImage="url('character/e3_3.png')";
+    }
+    if(turn==4){
+        if(Hp[1]>20)player2.style.backgroundImage="url('character/e4_0.png')";
+        if(Hp[1]<=20)player2.style.backgroundImage="url('character/e4_1.png')";
+        if(Hp[1]<=15)player2.style.backgroundImage="url('character/e4_2.png')";
+        if(Hp[1]<=10)player2.style.backgroundImage="url('character/e4_3.png')";
+        if(Hp[1]<=5)player2.style.backgroundImage="url('character/e4_4.png')";
+    }
 }
 function drawPP(){
     ctx.clearRect(0, 20, 500,40);
@@ -90,10 +115,16 @@ function drawPP(){
     ctx.fillText("PP:"+PP[1],450,33);
 }
 function Reboot(){
-    Hp[0]=24;
-    Hp[1]=24;
-    PP[0]=12;
-    PP[1]=12;
+    turn++;
+    if(turn==5){
+        turn=1;
+        Hp[0]=24;
+        PP[0]=12;
+    }
+    Hp[0]+=turn*2;
+    PP[0]+=turn;
+    Hp[1]=enemyHp[turn-1];
+    PP[1]=enemyPP[turn-1];
     playerchx[0]=40;
     playerchx[1]=410;
     atk_btn.style.display="";
@@ -103,6 +134,7 @@ function Reboot(){
     player2.style.display="";
     player1_choose.style.display="none";
     player2_choose.style.display="none";
+    nextturn_btn.style.display="none";
     reboot_btn.style.display="none";
     dice.style.display="none";
     win.style.display="none";
@@ -231,28 +263,29 @@ function Battle2(p1_choose,p2_choose){
         drawHp();
         drawPP();
     }else{
+        atk_btn.style.display="none";
+        def_btn.style.display="none";
+        rec_btn.style.display="none";
+        player1.style.display="none";
+        player2.style.display="none";
+        player1_choose.style.display="none";
+        player2_choose.style.display="none";
         if (Hp[0] <= 0||PP[0] < 0) {
             if(Hp[0]<=0)text.value += "\n你的血量歸零";
             if(PP[0]<0)text.value += "\n你的魔力枯竭";
             text.value+="\nYou Lose!";
             win.style.backgroundImage="url('others/lose.png')";
             win.style.display="";
+            reboot_btn.style.display="";
         }else {
             if(Hp[1]<=0)text.value += "\n對手血量歸零";
             if(PP[1]<0)text.value += "\n對手魔力枯竭";
             text.value+="\nYou Win!";
             win.style.backgroundImage="url('others/win.png')";
             win.style.display="";
+            nextturn_btn.style.display="";
         }
         text.value += "\n本遊戲由夜颯製作，感謝您的遊玩";
-        atk_btn.style.display="none";
-        def_btn.style.display="none";
-        rec_btn.style.display="none";
-        reboot_btn.style.display="";
-        player1.style.display="none";
-        player2.style.display="none";
-        player1_choose.style.display="none";
-        player2_choose.style.display="none";
     }
 }
 
@@ -291,7 +324,11 @@ def_btn.onclick = function(event){
 rec_btn.onclick = function(event){
     Battle1(3);
 }
+nextturn_btn.onclick = function(event){
+    Reboot();
+}
 reboot_btn.onclick = function(event){
+    turn=4;
     Reboot();
 }
 previous_btn.onclick = function(event){

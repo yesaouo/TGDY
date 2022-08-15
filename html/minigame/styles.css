@@ -11,7 +11,7 @@ body {
 textarea {
         resize: none;
         font-size: 12px;
-        background-image: url("character/118131.png");
+        background-image: url("character/180231.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 100% auto;
@@ -66,6 +66,15 @@ textarea {
 #controller #rec-choose-btn{
         background-color: blue;
 }
+#nextturn-btn{
+        color:orange;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: #DDDDDD;
+        padding: 15px 40px;
+        border-radius: 10px;
+        box-shadow:  5px 5px 5px #6F6767;
+}
 #reboot-btn{
         color:orange;
         font-size: 20px;
@@ -113,7 +122,7 @@ textarea {
 #player1{
         position: absolute;
         top: 160px; left: 10px;
-        background-image: url("character/figure_24_01.png");
+        background-image: url("character/p1_0.png");
         padding: 50%;
         background-repeat: no-repeat;
         z-index: 0;
