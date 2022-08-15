@@ -17,8 +17,8 @@ var player1_choose=document.getElementById("player1-choose");
 var player2_choose=document.getElementById("player2-choose");
 const enemyHp=[25,16,30,24];
 const enemyPP=[12,20,10,18];
-var Hp=[24,0];
-var PP=[12,0];
+var Hp=[20,0];
+var PP=[15,0];
 var playerchx=[];
 var turn=0;
 function Initialization() {
@@ -118,11 +118,11 @@ function Reboot(){
     turn++;
     if(turn==5){
         turn=1;
-        Hp[0]=24;
-        PP[0]=12;
+        Hp[0]=20;
+        PP[0]=15;
     }
-    Hp[0]+=turn*2;
-    PP[0]+=turn;
+    Hp[0]+=10;
+    PP[0]+=5;
     Hp[1]=enemyHp[turn-1];
     PP[1]=enemyPP[turn-1];
     playerchx[0]=40;
