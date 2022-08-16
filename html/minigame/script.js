@@ -63,7 +63,7 @@ function drawHp(){
     ctx.lineTo(500,15);
     ctx.fill();
     ctx.closePath();
-    ctx.font = "15px sans-serif";
+    ctx.font="15px sans-serif";
     ctx.fillStyle="#00DDDD";
     ctx.fillText("Hp:"+Hp[0],0,12);
     ctx.fillText("Hp:"+Hp[1],450,12);
@@ -109,7 +109,7 @@ function drawPP(){
     ctx.lineTo(500,35);
     ctx.fill();
     ctx.closePath();
-    ctx.font = "15px sans-serif";
+    ctx.font="15px sans-serif";
     ctx.fillStyle="#FF0000";
     ctx.fillText("PP:"+PP[0],0,33);
     ctx.fillText("PP:"+PP[1],450,33);
@@ -141,6 +141,8 @@ function Reboot(){
     text.value="";
     player1_choose.style.left="40px";
     player2_choose.style.left="410px";
+    voice.src = "character/m4a/p1_start.m4a";
+    voice.play();
     drawHp();
     drawPP();
 }
@@ -186,9 +188,19 @@ function Battle1(p1_choose){
     text.value = "你選擇" + Choose(p1_choose) + ",對手選擇" + Choose(p2_choose);
     playerchx[0]=40;
     playerchx[1]=410;
-    if(p1_choose==1)player1_choose.style.backgroundImage="url('others/atk.png')";
-    if(p1_choose==2)player1_choose.style.backgroundImage="url('others/def.png')";
-    if(p1_choose==3)player1_choose.style.backgroundImage="url('others/rec.png')";
+    if(p1_choose==1){
+        player1_choose.style.backgroundImage="url('others/atk.png')";
+        voice.src = "character/m4a/p1_atk.m4a";
+    }
+    if(p1_choose==2){
+        player1_choose.style.backgroundImage="url('others/def.png')";
+        voice.src = "character/m4a/p1_def.m4a";
+    }
+    if(p1_choose==3){
+        player1_choose.style.backgroundImage="url('others/rec.png')";
+        voice.src = "character/m4a/p1_rec.m4a";
+    }
+    voice.play();
     if(p2_choose==1)player2_choose.style.backgroundImage="url('others/atk.png')";
     if(p2_choose==2)player2_choose.style.backgroundImage="url('others/def.png')";
     if(p2_choose==3)player2_choose.style.backgroundImage="url('others/rec.png')";
@@ -216,8 +228,7 @@ function Animate(n1,n2){
 function Animate2(n1,n2){
     if(playerchx[0]<140){
         dice.style.display="";
-        setTimeout(function(){dice.style.display="none";},3000);
-        Battle2(n1,n2);
+        setTimeout(function(){dice.style.display="none";Battle2(n1,n2);},3000);
     }else{
         playerchx[0]-=2;
         playerchx[1]+=2;
@@ -238,13 +249,21 @@ function Battle2(p1_choose,p2_choose){
         else if (dice1 < dice2) {
             res1 = dice2;
             text.value += "你無法攻擊到對手，而他對你造成了" + res1 + "點傷害";
+            voice.src = "character/m4a/p1_hurt.m4a";
+            voice.play();
         }else text.value += "高手過招，無人受傷";
         
     }
     if (p1_choose == 2 && p2_choose == 2) text.value += "無人出手，防個寂寞";
     if (p1_choose == 1 && p2_choose == 2){
         if (dice1 > dice2) { res2 = dice1 - dice2; text.value += "你對對手造成了" + res2 + "點傷害"; }
-        if (dice1 < dice2) { res1 = dice2 - dice1; text.value += "對手對你造成了" + res1 + "點傷害，並回復了" + res1 + "點血量"; Hp[1] += res1; }
+        if (dice1 < dice2) {
+            res1 = dice2 - dice1;
+            text.value += "對手對你造成了" + res1 + "點傷害，並回復了" + res1 + "點血量";
+            Hp[1] += res1;
+            voice.src = "character/m4a/p1_hurtbydef.m4a";
+            voice.play();
+        }
         if (dice1 == dice2) text.value += "雙方皆損失了" + dice1 + "點能量";
     }
     if (p1_choose == 2 && p2_choose == 1){
@@ -256,7 +275,12 @@ function Battle2(p1_choose,p2_choose){
     if (p1_choose == 2 && p2_choose == 3) { text.value += "對手回復了" + dice2 + "點能量，你白白損失了" + dice1 + "點能量"; PP[1] += dice2 * 2; }
     if (p1_choose == 3 && p2_choose == 2) { text.value += "你回復了" + dice1 + "點能量，對手白白損失了" + dice2 + "點能量"; PP[0] += dice1 * 2; }
     if (p1_choose == 1 && p2_choose == 3) { res2 = dice1; text.value += "對手回復了" + dice2 + "點能量，你對他造成了" + res2 + "點傷害"; PP[1] += dice2 * 2; }
-    if (p1_choose == 3 && p2_choose == 1) { res1 = dice2; text.value += "對手對你造成了" + res1 + "點傷害，你回復了" + dice1 + "點能量"; PP[0] += dice1 * 2; }
+    if (p1_choose == 3 && p2_choose == 1) {
+        res1 = dice2;
+        text.value += "對手對你造成了" + res1 + "點傷害，你回復了" + dice1 + "點能量"; PP[0] += dice1 * 2;
+        voice.src = "character/m4a/p1_hurt.m4a";
+        voice.play();
+    }
     Hp[0] -= res1; Hp[1] -= res2; PP[0] -= dice1; PP[1] -= dice2;
     if (Hp[0] > 0 && Hp[1] > 0 && PP[0] >= 0 && PP[1] >= 0){
         text.value += "\n你現在有" + Hp[0] + "點血量，" + PP[0] + "點能量\n對手現在有" + Hp[1] + "點血量，" + PP[1] + "點能量";
@@ -277,19 +301,30 @@ function Battle2(p1_choose,p2_choose){
             win.style.backgroundImage="url('others/lose.png')";
             win.style.display="";
             reboot_btn.style.display="";
+            voice.src = "character/m4a/p1_lose.m4a";
+            voice.play();
+            text.value += "\n本遊戲由夜颯製作，感謝您的遊玩";
         }else {
             if(Hp[1]<=0)text.value += "\n對手血量歸零";
             if(PP[1]<0)text.value += "\n對手魔力枯竭";
             text.value+="\nYou Win!";
             win.style.backgroundImage="url('others/win.png')";
             win.style.display="";
-            nextturn_btn.style.display="";
+            if(turn!=4){
+                voice.src = "character/m4a/p1_next.m4a";
+                nextturn_btn.style.display="";
+            }else{
+                voice.src = "character/m4a/p1_win.m4a";
+                reboot_btn.style.display="";
+            }
+            voice.play();
         }
-        text.value += "\n本遊戲由夜颯製作，感謝您的遊玩";
     }
 }
 
 //musicplayer
+const voice = document.createElement("audio");
+voice.volume=0.5;
 const audio = document.createElement("audio");
 var song=1;
 var play = true;
@@ -297,11 +332,11 @@ audio.src = "music/"+song+".mp3";
 audio.volume=0.1;
 function playAudio() {
     audio.play();
-    play_btn.style.backgroundImage="url('music/pause.png')"
+    play_btn.style.backgroundImage="url('music/pause.png')";
 }
 function pauseAudio(){
     audio.pause();
-    play_btn.style.backgroundImage="url('music/play.png')"
+    play_btn.style.backgroundImage="url('music/play.png')";
 }
 function nextAudio() {
     if(song == 7)song = 0;
@@ -343,4 +378,8 @@ play_btn.onclick = function(event){
     if(play)playAudio();
     else pauseAudio();
     play=!play;
+}
+player1.onclick = function(event){
+    voice.src = "character/m4a/p1_atk.m4a";
+    voice.play();
 }
