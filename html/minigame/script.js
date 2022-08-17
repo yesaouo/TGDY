@@ -24,6 +24,7 @@ var turn=0;
 function Initialization() {
     drawBg();
     Reboot();
+    playAudio();
 }
 function drawBg(){
     ctx.beginPath();
@@ -245,6 +246,8 @@ function Battle2(p1_choose,p2_choose){
         if (dice1 > dice2) {
             res2 = dice1;
             text.value += "對手無法攻擊到你，而你對他造成了" + res2 + "點傷害";
+            voice.src = "character/m4a/e"+turn+"hurt.m4a";
+            voice.play();
         }
         else if (dice1 < dice2) {
             res1 = dice2;
@@ -256,7 +259,12 @@ function Battle2(p1_choose,p2_choose){
     }
     if (p1_choose == 2 && p2_choose == 2) text.value += "無人出手，防個寂寞";
     if (p1_choose == 1 && p2_choose == 2){
-        if (dice1 > dice2) { res2 = dice1 - dice2; text.value += "你對對手造成了" + res2 + "點傷害"; }
+        if (dice1 > dice2) { 
+            res2 = dice1 - dice2; 
+            text.value += "你對對手造成了" + res2 + "點傷害"; 
+            voice.src = "character/m4a/e"+turn+"hurt.m4a";
+            voice.play();
+        }
         if (dice1 < dice2) {
             res1 = dice2 - dice1;
             text.value += "對手對你造成了" + res1 + "點傷害，並回復了" + res1 + "點血量";
@@ -267,17 +275,35 @@ function Battle2(p1_choose,p2_choose){
         if (dice1 == dice2) text.value += "雙方皆損失了" + dice1 + "點能量";
     }
     if (p1_choose == 2 && p2_choose == 1){
-        if (dice1 < dice2) { res1 = dice2 - dice1; text.value += "對手對你造成了" + res1 + "點傷害"; }
-        if (dice1 > dice2) { res2 = dice1 - dice2; text.value += "你對對手造成了" + res2 + "點傷害，並回復了" + res2 + "點血量"; Hp[0] += res2; }
+        if (dice1 < dice2) { 
+            res1 = dice2 - dice1;
+            text.value += "對手對你造成了" + res1 + "點傷害"; 
+            voice.src = "character/m4a/p1_hurt.m4a";
+            voice.play();
+        }
+        if (dice1 > dice2) { 
+            res2 = dice1 - dice2; 
+            text.value += "你對對手造成了" + res2 + "點傷害，並回復了" + res2 + "點血量"; 
+            Hp[0] += res2; 
+            voice.src = "character/m4a/e"+turn+"hurtbydef.m4a";
+            voice.play();
+        }
         if (dice1 == dice2) text.value += "高手過招，無人受傷";
     }
     if (p1_choose == 3 && p2_choose == 3) { text.value += "你回復了" + dice1 + "點能量，對手回復了" + dice2 + "點能量"; PP[0] += dice1 * 2; PP[1] += dice2 * 2; }
     if (p1_choose == 2 && p2_choose == 3) { text.value += "對手回復了" + dice2 + "點能量，你白白損失了" + dice1 + "點能量"; PP[1] += dice2 * 2; }
     if (p1_choose == 3 && p2_choose == 2) { text.value += "你回復了" + dice1 + "點能量，對手白白損失了" + dice2 + "點能量"; PP[0] += dice1 * 2; }
-    if (p1_choose == 1 && p2_choose == 3) { res2 = dice1; text.value += "對手回復了" + dice2 + "點能量，你對他造成了" + res2 + "點傷害"; PP[1] += dice2 * 2; }
+    if (p1_choose == 1 && p2_choose == 3) { 
+        res2 = dice1; 
+        text.value += "對手回復了" + dice2 + "點能量，你對他造成了" + res2 + "點傷害"; 
+        PP[1] += dice2 * 2; 
+        voice.src = "character/m4a/e"+turn+"hurt.m4a";
+        voice.play();
+    }
     if (p1_choose == 3 && p2_choose == 1) {
         res1 = dice2;
-        text.value += "對手對你造成了" + res1 + "點傷害，你回復了" + dice1 + "點能量"; PP[0] += dice1 * 2;
+        text.value += "對手對你造成了" + res1 + "點傷害，你回復了" + dice1 + "點能量"; 
+        PP[0] += dice1 * 2;
         voice.src = "character/m4a/p1_hurt.m4a";
         voice.play();
     }
@@ -380,6 +406,10 @@ play_btn.onclick = function(event){
     play=!play;
 }
 player1.onclick = function(event){
-    voice.src = "character/m4a/p1_atk.m4a";
+    voice.src = "character/m4a/p1_click.m4a";
+    voice.play();
+}
+player2.onclick = function(event){
+    voice.src = "character/m4a/e"+turn+"click.m4a";
     voice.play();
 }
