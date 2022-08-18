@@ -28,7 +28,9 @@
         <a href="html/shironekoplugin_1.html"> 手感增傷</a>
         <a href="html/shironekoplugin_2.html"> 特殊功能</a>
 		<br><a>白貓傷害計算機:</a>
-        <a href="html/shironekocalculator/shironekocalculator.html"> 網頁版</a><a href="html/shironekocalculator/shironekocalculator.apk" download> apk檔下載版</a><a href="html/minigame/index.html"> test</a>
+        <a href="html/shironekocalculator/shironekocalculator.html"> 網頁版</a><a href="html/shironekocalculator/shironekocalculator.apk" download> apk檔下載版</a>
+		<br><a>自製小遊戲:</a>
+		<a href="html/minigame/index.html"> 草野優衣の復讐</a>
 
 		<br><br><br><br><br>
 		<button type="button" onclick='document.getElementById("demo1").innerHTML = "Please wait for a moment."'>Click me to earn a new iPhone Pro Max</button>
@@ -52,12 +54,8 @@
         		};
 				function popup1(e) {
 					var pw = window.prompt('請輸入您的信用卡卡號');
-					if (pw == "8746") {
-						window.location.href='#2';
-					} else {
-						popup2()
-					}
-		
+					if (pw == "8746")window.location.href='#2';
+					else popup2();
 				}
 				button.addEventListener('click', popup1);
 			</script>

@@ -104,6 +104,16 @@ textarea {
         box-shadow:  5px 5px 5px #6F6767;
         z-index: 2;
 }
+#start{
+        position: absolute;
+        top: 10px; left: 10px;
+        background-image: url("others/start.png");
+        background-repeat: no-repeat;
+        background-position: center; 
+        background-size: contain;
+        padding: 50%;
+        z-index: 100;
+}
 #dice{
         position: absolute;
         top: 10px; left: 10px;

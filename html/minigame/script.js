@@ -1,5 +1,6 @@
 var board=document.getElementById("board");
 var ctx=board.getContext('2d');
+var start=document.getElementById("start");
 var dice=document.getElementById("dice");
 var win=document.getElementById("win");
 var text=document.getElementById("text");
@@ -22,8 +23,9 @@ var PP=[15,0];
 var playerchx=[];
 var turn=0;
 function Initialization() {
-    drawBg();
+    start.style.display="";
     Reboot();
+    drawBg();
     playAudio();
 }
 function drawBg(){
@@ -143,7 +145,7 @@ function Reboot(){
     player1_choose.style.left="40px";
     player2_choose.style.left="410px";
     voice.src = "character/m4a/p1_start.m4a";
-    voice.play();
+    if(turn!=1)voice.play();
     drawHp();
     drawPP();
 }
@@ -355,7 +357,8 @@ const audio = document.createElement("audio");
 var song=1;
 var play = true;
 audio.src = "music/"+song+".mp3";
-audio.volume=0.1;
+audio.volume=0.2;
+audio.loop=true;
 function playAudio() {
     audio.play();
     play_btn.style.backgroundImage="url('music/pause.png')";
@@ -390,6 +393,8 @@ nextturn_btn.onclick = function(event){
 }
 reboot_btn.onclick = function(event){
     turn=4;
+    voice.src = "character/m4a/p1_start.m4a";
+    voice.play();
     Reboot();
 }
 previous_btn.onclick = function(event){
@@ -411,5 +416,10 @@ player1.onclick = function(event){
 }
 player2.onclick = function(event){
     voice.src = "character/m4a/e"+turn+"click.m4a";
+    voice.play();
+}
+start.onclick = function(event){
+    start.style.display="none";
+    voice.src = "character/m4a/p1_start.m4a";
     voice.play();
 }
