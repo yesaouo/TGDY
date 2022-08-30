@@ -1,15 +1,41 @@
-h1 {
+body{
+    background-color: powderblue;
+}
+h1{
     text-align: center;
     font-family: "Source Sans Pro", sans-serif;
     font-weight: normal;
 }
-#block {
-    width: 400px;
-    height: 70px;
+h2,h5{
+    text-align: center;
+    font-weight: normal;
+}
+dialog{
+    border: none;
+    box-shadow: 0 2px 6px #ccc;
+    border-radius: 10px;
+}
+dialog::backdrop{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+#block{
     border: 5px solid black; 
     display: flex;
     align-items: center;
     padding: 15px;
-    margin-left:auto; 
-    margin-right:auto;
+    margin: auto;
+}
+#unit{
+    background-image: url("img/unit-gamma-ui.png");
+    position: absolute;
+    width: 68px; height: 68px;
+}
+#prompt1{
+    background-color: lightgreen;
+}
+#prompt2{
+    background-color: coral;
+}
+#prompt3{
+    background-color: rgb(238, 236, 144);
 }
