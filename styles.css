@@ -21,8 +21,8 @@ dialog::backdrop{
 #tgdoy{
     background-image: url("img/tgdoy.png");
     height: 64px; width: 64px;
-    position: absolute;
-    right: 0;
+    position: fixed;
+    right: 0; top: 85%;
 }
 #block{
     border: 5px solid black; 
@@ -33,7 +33,7 @@ dialog::backdrop{
 }
 #unit{
     background-image: url("img/unit-gamma-ui.png");
-    position: absolute;
+    position: fixed;
     width: 68px; height: 68px;
 }
 #prompt1{

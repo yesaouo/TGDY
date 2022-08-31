@@ -1,9 +1,10 @@
 var windowHeight = window.innerHeight;
+var windowWidth = window.innerWidth;
 var unit=document.getElementById("unit");
-var unitxy=[10,windowHeight-80];
+var unitxy=[windowWidth-83,windowHeight*0.85];
 unit.style.top=unitxy[1]+"px";
 unit.style.left=unitxy[0]+"px";
-var deg="90deg";
+var deg="0deg";
 unit.style.rotate=deg;
 var move=false;
 
@@ -51,7 +52,7 @@ function Movetoclick(x,y){
         unitxy[1]+=y/r;
         unit.style.top=unitxy[1]+"px";
         unit.style.left=unitxy[0]+"px";
-        setTimeout(function(){Movetoclick(x-x/r,y-y/r);},5);
+        setTimeout(function(){Movetoclick(x-x/r,y-y/r);},1);
     }else move=false;
 }
 
