@@ -18,6 +18,12 @@ dialog{
 dialog::backdrop{
     background-color: rgba(0, 0, 0, 0.1);
 }
+#tgdoy{
+    background-image: url("img/tgdoy.png");
+    height: 64px; width: 64px;
+    position: absolute;
+    right: 0;
+}
 #block{
     border: 5px solid black; 
     display: flex;

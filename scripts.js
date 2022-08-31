@@ -55,6 +55,10 @@ function Movetoclick(x,y){
     }else move=false;
 }
 
+document.getElementById("tgdoy").addEventListener("click", function(){
+    window.location.href="https://discord.gg/FyumK85ufu";
+});
+
 var btn=document.querySelector("#show");
 var infoModal=document.querySelector("#infoModal");
 btn.addEventListener("click", function(){
@@ -75,6 +79,6 @@ btn2.addEventListener('click', function() {
 var btn3 = document.getElementById("prompt3");
 btn3.addEventListener('click', function(){
     window.location.href='#2';
-	window.open('https://github.com/yesaouo', '_blank', 'toolbar=0,location=0,menubar=0');
+	window.location.href="https://github.com/yesaouo";
 	infoModal.close();
 });
