@@ -20,9 +20,13 @@ dialog::backdrop{
 }
 #tgdoy{
     background-image: url("img/tgdoy.png");
-    height: 64px; width: 64px;
+    background-size: cover;
+    height: 32px; width: 32px;
     position: fixed;
-    right: 0; top: 85%;
+    left: 0; top: 85%;
+}
+#tgdoy:hover{
+    height: 64px; width: 64px;
 }
 #block{
     border: 5px solid black; 
