@@ -88,8 +88,9 @@
         function Support(){
             var json_obj = JSON.parse(Get('https://script.google.com/macros/s/AKfycbwOjxklOo7tXAP9VHWbcqdls7c3x7xgz4PbF_Ao13B4LkDU0onJgWag9O8mICjcxkVZ/exec'));
             var str='<table class="wikitable"><tbody><tr><th width="20%">角色</th><th width="80%">自動技能</th></tr>';
+                str+='<tr><td><img alt="露娜露" src="https://static.wikia.nocookie.net/shironekoproject/images/9/92/%E9%9C%B2%E5%A8%9C%E9%9C%B2s.png/revision/latest/scale-to-width-down/70?cb=20191127070456&amp;path-prefix=zh" decoding="async" loading="lazy" width="70" height="70" data-image-name="露娜露s.png" data-image-key="%E9%9C%B2%E5%A8%9C%E9%9C%B2s.png"><br>${json_obj[i][0]}</td><td><ul><li>${json_obj[i][2]}</li></ul></td></tr>';
             for(var i=0;i<json_obj.length;i++){
-                str+=`<tr><td><img alt="${json_obj[i][0]}" src="${json_obj[i][1]}" decoding="async" loading="lazy" width="70" height="70"><br>${json_obj[i][0]}</td><td><ul><li>${json_obj[i][2]}</li></ul></td></tr>`;
+                str+=`<tr><td><img alt="${json_obj[i][0]}" src="${json_obj[i][1]}" width="70" height="70"><br>${json_obj[i][0]}</td><td><ul><li>${json_obj[i][2]}</li></ul></td></tr>`;
             }
             str+='</tbody></table>';
             document.getElementById('support').innerHTML+=str;
@@ -98,7 +99,7 @@
             var json_obj = JSON.parse(Get('https://script.google.com/macros/s/AKfycbxWOwtzN6qh6M_l7xqLfutWeRcHtRHhEjIoGnDZm3EJpQGBlMxqKtd_NjvS6AOIdsSh/exec'));
             var str='<table class="wikitable"><tbody><tr><th width="20%">角色</th><th width="80%">自動技能</th></tr>';
             for(var i=0;i<json_obj.length;i++){
-                str+=`<tr><td><img alt="${json_obj[i][0]}" src="${json_obj[i][1]}" decoding="async" loading="lazy" width="70" height="70"><br>${json_obj[i][0]}</td><td><ul><li>${json_obj[i][2]}</li></ul></td></tr>`;
+                str+=`<tr><td><img alt="${json_obj[i][0]}" src="${json_obj[i][1]}" width="70" height="70"><br>${json_obj[i][0]}</td><td><ul><li>${json_obj[i][2]}</li></ul></td></tr>`;
             }
             str+='</tbody></table>';
             document.getElementById('auto').innerHTML+=str;
