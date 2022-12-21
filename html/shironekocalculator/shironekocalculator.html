@@ -89,7 +89,7 @@
             var json_obj = JSON.parse(Get('https://script.google.com/macros/s/AKfycbwOjxklOo7tXAP9VHWbcqdls7c3x7xgz4PbF_Ao13B4LkDU0onJgWag9O8mICjcxkVZ/exec'));
             var str='<table class="wikitable"><tbody><tr><th width="20%">角色</th><th width="80%">自動技能</th></tr>';
             for(var i=0;i<json_obj.length;i++){
-                str+=`<tr><td><img alt="${json_obj[i][0]}" src="${json_obj[i][1]}" width="70" height="70"><br>${json_obj[i][0]}</td><td><ul><li>${json_obj[i][2]}</li></ul></td></tr>`;
+                str+=`<tr><td><img onerror='this.src="${json_obj[i][1]}"' alt="${json_obj[i][0]}" src="${json_obj[i][1]}" width="70" height="70"><br>${json_obj[i][0]}</td><td><ul><li>${json_obj[i][2]}</li></ul></td></tr>`;
             }
             str+='</tbody></table>';
             document.getElementById('support').innerHTML+=str;
