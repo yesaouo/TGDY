@@ -1,0 +1,24 @@
+{
+  "name": "tgdy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yesaouo/TGDY.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yesaouo/TGDY/issues"
+  },
+  "homepage": "https://github.com/yesaouo/TGDY#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^5.1.0"
+  }
+}
