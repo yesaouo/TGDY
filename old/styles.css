@@ -1,0 +1,51 @@
+body{
+    background-color: powderblue;
+}
+h1{
+    text-align: center;
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: normal;
+}
+h2,h5{
+    text-align: center;
+    font-weight: normal;
+}
+dialog{
+    border: none;
+    box-shadow: 0 2px 6px #ccc;
+    border-radius: 10px;
+}
+dialog::backdrop{
+    background-color: rgba(0, 0, 0, 0.3);
+}
+#tgdoy{
+    background-image: url("img/tgdoy.png");
+    background-size: cover;
+    height: 32px; width: 32px;
+    position: fixed;
+    left: 0; top: 85%;
+}
+#tgdoy:hover{
+    height: 64px; width: 64px;
+}
+#block{
+    border: 5px solid black; 
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin: auto;
+}
+#unit{
+    background-image: url("img/unit-gamma-ui.png");
+    position: fixed;
+    width: 68px; height: 68px;
+}
+#prompt1{
+    background-color: lightgreen;
+}
+#prompt2{
+    background-color: coral;
+}
+#prompt3{
+    background-color: rgb(238, 236, 144);
+}

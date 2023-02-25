@@ -1,85 +1,153 @@
-var windowHeight = window.innerHeight;
-var windowWidth = window.innerWidth;
-var unit=document.getElementById("unit");
-var unitxy=[windowWidth-83,windowHeight*0.85];
-unit.style.top=unitxy[1]+"px";
-unit.style.left=unitxy[0]+"px";
-var deg="0deg";
-unit.style.rotate=deg;
-var move=false;
-
-$(document).keydown(function(event) {
-    var event = event || window.event;
-    switch(String.fromCharCode(event.keyCode).toUpperCase()) {
-        case 'W':
-            deg="0deg";
-            unitxy[1]-=10;
-            break;
-        case 'A':
-            deg="270deg";
-            unitxy[0]-=10;
-            break;
-        case 'S':
-            deg="180deg";
-            unitxy[1]+=10;
-            break;
-        case 'D':
-            deg="90deg";
-            unitxy[0]+=10;
-            break;
+let login = false;
+const menu = document.getElementById("menu");
+const user = document.getElementById("user");
+const dialogLogin = document.getElementById("dialog-login");
+const dialogMsg = document.getElementById("dialog-msg");
+const userBtn = document.getElementById("user-btn");
+const userHello = document.getElementById("user-hello");
+const userWallet = document.getElementById("user-wallet");
+const userDiscord = document.getElementById("user-discord");
+document.onclick=function(e){
+  if(e.target.className == 'user-btn'){
+    if(login){
+      user.classList.toggle("open");
+    }else{
+      dialogMsg.innerHTML = '<br>';
+      dialogLogin.showModal();
     }
-    unit.style.rotate=deg;
-    unit.style.top=unitxy[1]+"px";
-    unit.style.left=unitxy[0]+"px";
-    return false;
-});
-
-document.addEventListener('click',(e)=>{
-    console.log(e.clientX,e.clientY);
-    if(!move){
-        move=true;
-        var x=e.clientX-unitxy[0],y=e.clientY-unitxy[1];
-        if(x>=0)deg=(Math.atan(y/x)*180/Math.PI+90)+"deg";
-        else deg=(Math.atan(y/x)*180/Math.PI-90)+"deg";
-        unit.style.rotate=deg;
-        Movetoclick(x,y);
-    }else move=false;
-})
-function Movetoclick(x,y){
-    var r=Math.sqrt(x*x+y*y);
-    if(r>=1&&move==true){
-        unitxy[0]+=x/r;
-        unitxy[1]+=y/r;
-        unit.style.top=unitxy[1]+"px";
-        unit.style.left=unitxy[0]+"px";
-        setTimeout(function(){Movetoclick(x-x/r,y-y/r);},1);
-    }else move=false;
+  }else if(e.target.id == 'menu-btn'){
+    menu.classList.toggle("open");
+  }else if(e.target.id == 'dialog-cancel'){
+    dialogLogin.close();
+  }else if(e.target.id == 'user-rename'){
+    changeName();
+  }else if(e.target.id == 'user-photo'){
+    changePhoto();
+  }else if(e.target.id == 'user-discord'){
+    changeDiscord();
+  }else if(e.target.id == 'user-logout'){
+    LogOut();
+  }
 }
+function Keydown(e) {
+  if(e.keyCode==27) {
+    menu.classList.toggle("open");
+    user.classList.toggle("open");
+  }
+}
+document.addEventListener('keydown', Keydown, false);
 
-document.getElementById("tgdoy").addEventListener("click", function(){
-    window.location.href="https://discord.gg/FyumK85ufu";
-});
-
-var btn=document.querySelector("#show");
-var infoModal=document.querySelector("#infoModal");
-btn.addEventListener("click", function(){
-    infoModal.showModal();
-})
-var btn1 = document.getElementById("prompt1");
-btn1.addEventListener('click', function() {
-    var pw = window.prompt('請輸入您的信用卡卡號');
-	if (pw == "8746"){
-		window.location.href='#2';
-		infoModal.close();
-	}else alert('很抱歉，您輸入的卡號有誤');
-});
-var btn2 = document.getElementById("prompt2");
-btn2.addEventListener('click', function() {
-    infoModal.close();
-});
-var btn3 = document.getElementById("prompt3");
-btn3.addEventListener('click', function(){
-    window.location.href='#2';
-	window.location.href="https://github.com/yesaouo";
-	infoModal.close();
-});
+function checkAccount(){
+  if(document.getElementById("acc").value==''||document.getElementById("pas").value==''){
+    dialogMsg.innerHTML =  'Enter account and password';
+    return false;
+  }else return true;
+}
+function getName(){
+  let name;
+  while(!name){
+    name=window.prompt('Enter your name');
+  }
+  return name;
+}
+function getText(str){
+  return window.prompt(str);
+}
+function LogOut(){
+  login = false;
+  user.classList.toggle("open");
+  userBtn.innerHTML = '<img src="img/user.png" class="user-btn">';
+}
+async function LogIn(){
+  try {
+    if(checkAccount()){
+      const acc = document.getElementById("acc").value;
+      const pas = document.getElementById("pas").value;
+      localStorage.setItem('tgdy-account',acc);
+      localStorage.setItem('tgdy-password',pas);
+      const response = await fetch(`/login?acc=${acc}&pas=${pas}`);
+      let profile = await response.text();
+      try {
+        //JSON.parse(profile);
+        //localStorage.setItem('tgdy',profile);
+        profile = JSON.parse(profile);
+        dialogLogin.close();
+        login = true;
+        userBtn.innerHTML = `<img src="${profile["Photo"]}" class="user-btn"><img src="img/angle-small-down.png" class="user-btn">`;
+        userHello.innerHTML = `Hello, ${profile["Name"]}!`;
+        userWallet.innerHTML = `<img src="img/dollar.png">${profile["Coin"]}&nbsp<img src="img/diamond.png">${profile["Diamond"]}`;
+        userDiscord.innerHTML = ("Discord" in profile)? profile["Discord"] : 'Add Discord account';
+      } catch (error) {
+        dialogMsg.innerHTML = profile;
+      }
+    }
+  } catch (error) {dialogMsg.innerHTML = "Error";}
+}
+async function SignUp(){
+  try {
+    if(checkAccount()){
+      const name = getName();
+      const acc = document.getElementById("acc").value;
+      const pas = document.getElementById("pas").value;
+      localStorage.setItem('tgdy-account',acc);
+      localStorage.setItem('tgdy-password',pas);
+      const response = await fetch(`/signup?acc=${acc}&pas=${pas}&name=${name}`);
+      dialogMsg.innerHTML = await response.text();
+    }
+  } catch (error) {dialogMsg.innerHTML = "Error";}
+}
+async function changeName(){
+  try {
+    const name = getText('Enter your name');
+    if(name != null){
+      const acc = localStorage.getItem('tgdy-account');
+      const pas = localStorage.getItem('tgdy-password');
+      const response = await fetch(`/changename?acc=${acc}&pas=${pas}&name=${name}`);
+      const result = await response.text();
+      if(result != "Error"){
+        userHello.innerHTML = 'Hello, ' + name + '!';
+      }
+      alert(result);
+    }
+  } catch (error) {alert("Error");}
+}
+async function changePhoto(){
+  try {
+    const url = getText('Paste your photo link');
+    if(url != null){
+      const acc = localStorage.getItem('tgdy-account');
+      const pas = localStorage.getItem('tgdy-password');
+      const response = await fetch(`/changephoto?acc=${acc}&pas=${pas}&photo=${url}`);
+      const result = await response.text();
+      if(result != "Error"){
+        userBtn.innerHTML = `<img src="${url}" class="user-btn"><img src="img/angle-small-down.png" class="user-btn">`;
+      }
+      alert(result);
+    }
+  } catch (error) {alert("Error");}
+}
+async function changeDiscord(){
+  try {
+    const dc = getText('Enter your Discord ID (ex: Username#0000)');
+    if(dc != null){
+      const acc = localStorage.getItem('tgdy-account');
+      const pas = localStorage.getItem('tgdy-password');
+      const response = await fetch(`/changediscord?acc=${acc}&pas=${pas}&dcname=${dc.split('#')[0]}&dcnum=${dc.split('#')[1]}`);
+      const result = await response.text();
+      if(result != "Error"){
+        userDiscord.innerHTML = dc;
+      }
+      alert(result);
+    }
+  } catch (error) {alert("Error");}
+}
+function Start(){
+  var localacc=localStorage.getItem('tgdy-account');
+  var localpas=localStorage.getItem('tgdy-password');
+  if(localacc && localpas){
+    document.getElementById("acc").value=localacc;
+    document.getElementById("pas").value=localpas;
+    LogIn();
+  }
+}
+window.addEventListener("load",Start,false);
