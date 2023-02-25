@@ -74,7 +74,7 @@ app.get('/signup', async(req, res) => {
                 Account: acc,
                 Password: pas,
                 Name: name,
-                Photo: 'img/user.png',
+                Photo: 'https://yesaouo.github.io/TGDY/img/user.png',
                 Coin: 1000,
                 Diamond: 0
             }
