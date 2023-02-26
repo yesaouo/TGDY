@@ -140,7 +140,7 @@ async function changeDiscord(){
   } catch (error) {alert("Error");}
 }
 function Start(){
-  document.getElementById("logo-title").innerHTML = (document.body.clientWidth > 500)? "The Grand Duchy of Yesa" : "TGDY";
+  document.getElementById("logo-title").innerHTML = (document.body.clientWidth > 450)? "The Grand Duchy of Yesa" : "TGDY";
   var localacc=localStorage.getItem('tgdy-account');
   var localpas=localStorage.getItem('tgdy-password');
   if(localacc && localpas){
