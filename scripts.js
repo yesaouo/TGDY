@@ -68,8 +68,6 @@ async function LogIn(){
       const response = await fetch(`/login?acc=${acc}&pas=${pas}`);
       let profile = await response.text();
       try {
-        //JSON.parse(profile);
-        //localStorage.setItem('tgdy',profile);
         profile = JSON.parse(profile);
         dialogLogin.close();
         login = true;
@@ -142,6 +140,7 @@ async function changeDiscord(){
   } catch (error) {alert("Error");}
 }
 function Start(){
+  document.getElementById("logo-title").innerHTML = (document.body.clientWidth > 500)? "The Grand Duchy of Yesa" : "TGDY";
   var localacc=localStorage.getItem('tgdy-account');
   var localpas=localStorage.getItem('tgdy-password');
   if(localacc && localpas){
